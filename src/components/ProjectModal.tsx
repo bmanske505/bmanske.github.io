@@ -30,9 +30,9 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
 		/* Blurred background */
 		<div className="fixed z-20 bg-black/75 backdrop-blur inset-0 flex justify-center items-center">
 			{/* Rounded shell of modal, clips contents */}
-			<div className="size-auto bg-white border zoom-in overflow-hidden">
+			<div className="bg-white border zoom-in overflow-hidden">
 				{/* Layout container - NO overflow rules */}
-				<div className="flex flex-col max-h-[90vh]">
+				<div className="flex flex-col max-h-[90vh] max-w-screen-xl">
 					{/* Header */}
 					<div
 						className="py-4 px-8 box-interactable !rounded-none !border-x-0 !border-t-0"
@@ -83,7 +83,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
 								</div>
 							</div>
 						</div>
-						{project.writeup && <Writeup project={project} />}
+						<Writeup project={project} />
 					</div>
 				</div>
 			</div>

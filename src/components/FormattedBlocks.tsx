@@ -1,5 +1,6 @@
 import { Project } from "../types";
-import { FaGithub, FaItchIo, FaLinkedin, FaTrophy } from "react-icons/fa6";
+import { IconMap } from "../constants";
+import { FaGithub, FaItchIo, FaLinkedin, FaAward, FaPoop } from "react-icons/fa6";
 
 interface ProjectProps {
 	project: Project;
@@ -30,7 +31,7 @@ export const Heading: React.FC<ProjectProps> = ({ project }) => {
 			<h3 className="text-2xl font-bold text-white">{project.title}</h3>
 			{project.award && (
 				<span className="text-icon">
-					<FaTrophy size={22} title="Award Earned" />
+					<FaAward size={22} title="Award Earned" />
 					{project.award}
 				</span>
 			)}
@@ -57,24 +58,75 @@ export const Socials: React.FC<DivProps> = ({ className }) => {
 	);
 };
 
+type ContentBlock = { type: "paragraph"; text: string } | { type: "list"; items: string[] };
+
+function parseTextToBlocks(text: string): ContentBlock[] {
+	const lines = text.split("\n").map((l) => l.trim());
+
+	const blocks: ContentBlock[] = [];
+	let currentList: string[] = [];
+
+	const flushList = () => {
+		if (currentList.length) {
+			blocks.push({ type: "list", items: currentList });
+			currentList = [];
+		}
+	};
+
+	for (const line of lines) {
+		if (!line) continue;
+
+		// list item
+		if (line.startsWith("-")) {
+			currentList.push(line.replace(/^-+/, "").trim());
+			continue;
+		}
+
+		// normal text
+		flushList();
+		blocks.push({ type: "paragraph", text: line });
+	}
+
+	flushList();
+	return blocks;
+}
+
 export const Writeup: React.FC<ProjectProps> = ({ project }) => {
+	if (!project.writeup) return null;
+
 	return (
-		<div className="mt-8">
-			{project.writeup.split("\n").map((line) => {
-				if (line.trim().startsWith("##")) {
-					return (
-						<h4 className="mb-4 text-2xl tracking-normal capitalize">
-							{line.replace("##", "").trim()}
+		<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 my-8">
+			{project.writeup.map((section) => {
+				if (!section.text) return;
+				const blocks = parseTextToBlocks(section.text);
+				const Icon = IconMap.get(section.heading);
+
+				return (
+					<div className="flex flex-col gap-4">
+						<h4 className="text-2xl capitalize tracking-normal text-icon">
+							{Icon && <Icon size={22} title={section.heading} />}
+							{section.heading}
 						</h4>
-					);
-				} else if (line.trim().startsWith("#")) {
-					return (
-						<h3 className="mb-4 text-3xl font-bold text-black">{line.replace("#", "").trim()}</h3>
-					);
-				} else if (line.trim().startsWith("-")) {
-					return <li className="text-lg text-black">{line.replace("-", "").trim()}</li>;
-				}
-				return <p className="mb-4 text-lg text-black">{line}</p>;
+
+						{blocks.map((block) => {
+							if (block.type === "paragraph") {
+								return <p>{block.text}</p>;
+							}
+
+							if (block.type === "list") {
+								return (
+									<ul className="space-y-4">
+										{block.items.map((item, k) => (
+											<li>{item}</li>
+										))}
+									</ul>
+								);
+							}
+
+							return null;
+						})}
+					</div>
+				);
 			})}
 		</div>
 	);

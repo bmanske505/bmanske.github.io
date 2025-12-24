@@ -44,9 +44,13 @@ const ProjectGallery: React.FC = () => {
 
 			{filteredProjects.length > 0 ? (
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-					{filteredProjects.map((project) => (
-						<ProjectCard key={project.title} project={project} onClick={setSelectedProject} />
-					))}
+					{filteredProjects.map((project) =>
+						selectedProject == project ? (
+							<div></div>
+						) : (
+							<ProjectCard key={project.title} project={project} onClick={setSelectedProject} />
+						)
+					)}
 				</div>
 			) : (
 				<div className="h-64 flex flex-col items-center justify-center text-slate-400 bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200">
