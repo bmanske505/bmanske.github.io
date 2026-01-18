@@ -6,14 +6,14 @@
 :root {
 	--accent: rgb(114, 82, 255);
 	--text: rgb(71 85 105);
-	--primary: 255 255 255;
-	--secondary: 0 0 0;
+	--primary: 225 225 225;
+	--secondary: 30 30 30;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--primary: 0 0 0;
-		--secondary: 255 255 255;
+		--primary: 30 30 30;
+		--secondary: 225 225 225;
 		--text: rgb(148 163 184);
 	}
 }
@@ -189,7 +189,7 @@ a.box-lift,
 }
 
 .box-depress {
-	@apply rounded-full overflow-hidden border;
+	@apply flex items-center justify-center rounded-full overflow-hidden border;
 }
 
 .box-depress:not(.radio),
@@ -201,7 +201,7 @@ a.box-lift,
 	box-shadow: inset 0px 4px 10px black;
 }
 
-.box-depress:hover:not(.active) > * {
+.box-depress:hover:not(.active.radio) > * {
 	@apply translate-y-1;
 }
 

@@ -36,10 +36,12 @@ const About: React.FC = () => {
 					</p>
 
 					<div className="flex flex-wrap gap-8 items-center justify-center md:justify-start">
-						<a href="mailto:bmanske505@gmail.com" target="_blank" className="box-depress text-icon">
-							<PiEnvelopeFill size={25} title="Email" />
-							<span>Get in Touch</span>
-						</a>
+						<span className="box-depress">
+							<a href="mailto:bmanske505@gmail.com" target="_blank" className="text-icon">
+								<PiEnvelopeFill size={25} title="Email" />
+								Get in Touch
+							</a>
+						</span>
 						<Socials className="text gap-8" />
 					</div>
 				</div>
@@ -50,10 +52,12 @@ const About: React.FC = () => {
 				<h2>My Resume</h2>
 				<p>A summary of my professional journey and skills.</p>
 				<div className="flex justify-center md:justify-start">
-					<a href="./BradyManske.pdf" target="_blank" className="box-depress text-icon">
-						<PiFileTextFill size={25} title="Resume" />
-						<span>View Resume</span>
-					</a>
+					<div className="box-depress">
+						<a href="./BradyManske.pdf" target="_blank" className="text-icon">
+							<PiFileTextFill size={25} title="Resume" />
+							View Resume
+						</a>
+					</div>
 				</div>
 			</section>
 			<section className="flex flex-col gap-4">

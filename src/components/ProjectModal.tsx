@@ -103,22 +103,26 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
 										<h4 className="secondary">Connect & Launch</h4>
 										<div className="flex flex-wrap gap-4">
 											{project.webUrl && (
-												<a href={project.webUrl} target="_blank" className="box-depress text-icon">
-													<span>Visit Webpage</span>
-													<PiArrowSquareOutDuotone size={22} title="Webpage" />
-												</a>
+												<span className="box-depress">
+													<a href={project.webUrl} target="_blank" className="text-icon">
+														Visit Webpage
+														<PiArrowSquareOutDuotone size={22} title="Webpage" />
+													</a>
+												</span>
 											)}
 											{project.codeUrl && (
-												<a href={project.codeUrl} target="_blank" className="box-depress text-icon">
-													<span>View Codebase</span>
-													{project.codeUrl.includes("github") ? (
-														<PiGithubLogoDuotone size={22} title="GitHub Repository" />
-													) : project.codeUrl.includes("gitlab") ? (
-														<PiGitlabLogoDuotone size={22} title="GitLab Repository" />
-													) : (
-														<DefaultIcon size={22} title="Codebase" />
-													)}
-												</a>
+												<span className="box-depress">
+													<a href={project.codeUrl} target="_blank" className="text-icon">
+														View Codebase
+														{project.codeUrl.includes("github") ? (
+															<PiGithubLogoDuotone size={22} title="GitHub Repository" />
+														) : project.codeUrl.includes("gitlab") ? (
+															<PiGitlabLogoDuotone size={22} title="GitLab Repository" />
+														) : (
+															<DefaultIcon size={22} title="Codebase" />
+														)}
+													</a>
+												</span>
 											)}
 										</div>
 									</div>

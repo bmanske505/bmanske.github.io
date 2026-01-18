@@ -13,19 +13,15 @@ const Navbar: React.FC = () => {
 			<Link
 				to="/"
 				onClick={scrollToTop}
-				className={`text-interactable primary uppercase ${
-					location.pathname === "/" ? "active" : ""
-				}`}>
-				About
+				className={`box-depress radio secondary uppercase ${location.pathname === "/" ? "active" : ""}`}>
+				<span>About</span>
 			</Link>
 
 			<Link
 				to="/projects"
 				onClick={scrollToTop}
-				className={`text-interactable primary uppercase ${
-					location.pathname === "/projects" ? "active" : ""
-				}`}>
-				Projects
+				className={`box-depress radio secondary uppercase ${location.pathname === "/projects" ? "active" : ""}`}>
+				<span>Projects</span>
 			</Link>
 		</nav>
 	);
