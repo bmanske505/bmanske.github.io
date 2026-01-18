@@ -73,8 +73,9 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
 								<div className="space-y-4">
 									<h4 className="secondary">Connect & Launch</h4>
 									{project.githubUrl && (
-										<a href={project.githubUrl} target="_blank" className="box-lift text-icon">
-											View Codebase <PiGithubLogoDuotone size={22} title="GitHub Repository" />
+										<a href={project.githubUrl} target="_blank" className="box-depress text-icon">
+											<span>View Codebase</span>
+											<PiGithubLogoDuotone size={22} title="GitHub Repository" />
 										</a>
 									)}
 								</div>
